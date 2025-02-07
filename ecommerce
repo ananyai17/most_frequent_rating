@@ -1,0 +1,25 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+    public static void findMostFrequentRating(int[] ratings) {
+        Map<Integer, Integer> frequencyMap = new HashMap<>();
+        for (int rating : ratings) {
+            frequencyMap.put(rating, frequencyMap.getOrDefault(rating, 0) + 1);
+        }
+        int mostFrequentRating = ratings[0];
+        int maxCount = 0;
+        for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
+            if (entry.getValue() > maxCount) {
+                maxCount = entry.getValue();
+                mostFrequentRating = entry.getKey();
+            }
+        }
+        System.out.println("The most frequent rating is " + mostFrequentRating + " with " + maxCount + " occurrences.");
+    }
+
+    public static void main(String[] args) {
+        int[] ratings = {5, 3, 4, 5, 2, 3, 5, 4, 3, 3};
+        findMostFrequentRating(ratings);
+    }
+}
